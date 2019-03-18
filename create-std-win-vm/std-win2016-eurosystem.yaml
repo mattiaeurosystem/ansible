@@ -46,13 +46,7 @@
           - name: "{{ source_vm.network_name }}"
         customization:
           hostname: "{{ item.hostname }}"
-          orgname: "{{ standard_params.orgname }}"
-          domain: "{{ standard_params.domain }}"
-          domainadmin: "{{ standard_params.domainadmin }}"
-          domainadminpassword: "{{ standard_params.domainadminpassword }}"
-          fullname: "{{ standard_params.fullname }}"
-          dns_suffix: "{{ standard_params.dns_suffix }}"
-          joindomain: "{{ standard_params.joindomain }}"
+          
         annotation: "Eurosystem VM customization"
         with_items: "{{ new_hosts }}"
       register: deploy
