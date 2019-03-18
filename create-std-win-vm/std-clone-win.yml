@@ -6,7 +6,7 @@
   - name: Clone the template
     vmware_guest:
       hostname: "{{ lab-vcsa.lab.local }}"
-      username: "{{ "administrator@lab.local" }}"
+      username: "{{ LAB\administrator }}"
       password: "{{ Password01 }}"
       validate_certs: False
       name: testansible01
