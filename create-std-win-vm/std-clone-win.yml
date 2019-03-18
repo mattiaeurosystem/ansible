@@ -6,13 +6,13 @@
   - name: Clone the template
     vmware_guest:
       hostname: "{{ lab-vcsa.lab.local }}"
-      username: "{{ LAB\\administrator }}"
+      username: "{{ administrator@vsphere.local }}"
       password: "{{ Password01 }}"
       validate_certs: False
       name: testansible01
       template: Lab-template2016-vmversion13
       datacenter: "{{ LAB-Datacenter }}"
-      folder: 
+      folder: Orchestration
       state: poweredon
       cluster: "{{ LAB-Cluster }}"
       wait_for_ip_address: yes
