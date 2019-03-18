@@ -4,8 +4,8 @@
   vars:
     vcenter_provider:
       hostname: lab-vcsa.lab.local
-      username: administrator
-      password: Password01
+      username: parise
+      password: Password02
       validate_certs: False
       datacenter: LAB-Datacenter
       cluster: LAB-Cluster
@@ -18,18 +18,16 @@
     standard_params:
       orgname: 'EuroSystem Lab'
       domain: 'lab.local'
-      domainadmin: 'administrator'
-      domainadminpassword: 'Password01'
+      domainadmin: 'parise'
+      domainadminpassword: 'Password02'
       fullname: 'EuroSystem Lab'
       dns_suffix: 'lab.local'
       joindomain: 'lab.local'
+
     new_hosts:
       - hostname: lab-ans-win01
-        password: "{{ Password01 }}"
       - hostname: lab-ans-win02
-        password: "{{ Password02 }}"
       - hostname: lab-ans-win03
-        password: "{{ Password03 }}"
 
   tasks:
     - name: Creating VM from template
@@ -48,7 +46,6 @@
           - name: "{{ source_vm.network_name }}"
         customization:
           hostname: "{{ item.hostname }}"
-          password: "{{ item.password }}"
           orgname: "{{ standard_params.orgname }}"
           domain: "{{ standard_params.domain }}"
           domainadmin: "{{ standard_params.domainadmin }}"
