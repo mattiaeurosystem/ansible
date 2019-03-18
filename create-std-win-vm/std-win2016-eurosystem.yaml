@@ -57,7 +57,7 @@
           dns_suffix: "{{ standard_params.dns_suffix }}"
           joindomain: "{{ standard_params.joindomain }}"
         annotation: "Eurosystem VM customization"
-        loop: "{{ new_hosts|flatten(levels=1) }}"
+        with_items: "{{ new_hosts }}"
       register: deploy
 
     - name: Show Deploy
