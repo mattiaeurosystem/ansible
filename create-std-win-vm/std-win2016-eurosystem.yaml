@@ -58,7 +58,6 @@
           joindomain: "{{ standard_params.joindomain }}"
         annotation: "Eurosystem VM customization"
         loop: "{{ new_hosts|flatten(levels=1) }}"
-      wait_for_ip_address: yes
       register: deploy
 
     - name: Show Deploy
