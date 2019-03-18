@@ -17,9 +17,6 @@
 
     new_hosts:
       - hostname: testVM01
-        ip_addr: 192.168.1.101
-        ip_netmask: 255.255.255.0
-        ip_gateway: 192.168.1.1
 
   tasks:
     - name: Create VM from Template
@@ -36,10 +33,6 @@
         template: "{{ source_vm.name }}"
         networks:
           - name: "{{ source_vm.network_name }}"
-        type: static
-            ip: "{{ item.ip_addr }}"
-            netmask: "{{ item.ip_netmask }}"
-            gateway: "{{ item.ip_gateway }}"
         customization:
           hostname: "{{ item.hostname }}"
         annotation: "Created via Ansible Script"
