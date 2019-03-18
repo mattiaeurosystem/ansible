@@ -7,8 +7,8 @@
       username: parise
       password: Password02
       validate_certs: False
-      datacenter: Lab-Datacenter
-      cluster: Lab-Cluster
+      datacenter: LAB-Datacenter
+      cluster: LAB-Cluster
       folder: Orchestration
 
     source_vm:
