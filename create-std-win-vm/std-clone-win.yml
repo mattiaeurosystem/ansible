@@ -1,9 +1,9 @@
 ---
-- name: Create a VM from a template
+- name: "{{Create a VM from a template}}"
   hosts: localhost
   gather_facts: no
   tasks:
-  - name: Clone the template
+  - name: "{{Clone the template}}"
     vmware_guest:
       hostname: "{{ lab-vcsa.lab.local }}"
       username: "{{ administrator }}"
