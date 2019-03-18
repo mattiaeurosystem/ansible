@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: no
   tasks:
-  - name: "{{Clone the template}}"
+  - name: Cloning
     vmware_guest:
       hostname: "{{ lab-vcsa.lab.local }}"
       username: "{{ administrator }}"
