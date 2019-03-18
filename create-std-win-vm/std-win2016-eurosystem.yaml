@@ -1,0 +1,69 @@
+---
+- name: Windows VM creation
+  hosts: localhost
+  vars:
+    vcenter_provider:
+      hostname: lab-vcsa.lab.local
+      username: administrator
+      password: Password01
+      validate_certs: False
+      datacenter: LAB-Datacenter
+      cluster: LAB-Cluster
+      folder: Orchestration
+
+    source_vm:
+      name: 'Lab-template2016-vmversion13'
+      network_name: 'VM Network'
+
+    standard_params:
+      orgname: 'EuroSystem Lab'
+      domain: 'lab.local'
+      domainadmin: 'administrator'
+      domainadminpassword: 'Password01'
+      fullname: 'EuroSystem Lab'
+      dns_suffix: 'lab.local'
+      joindomain: 'lab.local'
+    new_hosts:
+      - hostname: lab-ans-win01
+        password: "{{ Password01 }}"
+      - hostname: lab-ans-win02
+        password: "{{ Password02 }}"
+      - hostname: lab-ans-win03
+        password: "{{ Password03 }}"
+
+  tasks:
+    - name: Creating VM from template
+      vmware_guest:
+        hostname: "{{ vcenter_provider.hostname }}"
+        username: "{{ vcenter_provider.username }}"
+        password: "{{ vcenter_provider.password }}"
+        datacenter: "{{ vcenter_provider.datacenter }}"
+        cluster: "{{ vcenter_provider.cluster }}"
+        validate_certs: "{{ vcenter_provider.validate_certs }}"
+        folder: "{{( vcenter_provider.folder | default ('/vm') )}}"
+        name: "{{ item.hostname }}"
+        state: "{{ item.state | default('poweredon') }}"
+        template: "{{ source_vm.name }}"
+        networks:
+          - name: "{{ source_vm.network_name }}"
+        customization:
+          hostname: "{{ item.hostname }}"
+          password: "{{ item.password }}"
+          orgname: "{{ standard_params.orgname }}"
+          domain: "{{ standard_params.domain }}"
+          domainadmin: "{{ standard_params.domainadmin }}"
+          domainadminpassword: "{{ standard_params.domainadminpassword }}"
+          fullname: "{{ standard_params.fullname }}"
+          dns_suffix: "{{ standard_params.dns_suffix }}"
+          joindomain: "{{ standard_params.joindomain }}"
+        annotation: "Eurosystem VM customization"
+        loop: "{{ new_hosts|flatten(levels=1) }}"
+      wait_for_ip_address: yes
+      register: deploy
+
+    - name: Show Deploy
+      debug:
+        msg: "{{ deploy }}"
+
+
+      
