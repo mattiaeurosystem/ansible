@@ -15,14 +15,7 @@
       name: 'Lab-template2016-vmversion13'
       network_name: 'VM Network'
 
-    standard_params:
-      orgname: 'EuroSystem Lab'
-      domain: 'lab.local'
-      domainadmin: 'parise'
-      domainadminpassword: 'Password02'
-      fullname: 'EuroSystem Lab'
-      dns_suffix: 'lab.local'
-      joindomain: 'lab.local'
+    
 
     new_hosts:
       - hostname: lab-ans-win01
