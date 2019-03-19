@@ -25,9 +25,9 @@
       joindomain: 'lab.local'
 
     new_hosts:
-      - hostname: lab-ans-win01
-      - hostname: lab-ans-win02
-      - hostname: lab-ans-win03
+      - hostname: lab-ans-win04
+      - hostname: lab-ans-win05
+      - hostname: lab-ans-win06
 
   tasks:
     - name: Creating VM from template
